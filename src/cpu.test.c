@@ -5,6 +5,6 @@
 int main(void)
 {
     cpu_reset();
-    assert(1);
+    assert(1 == 1);
 }
 
