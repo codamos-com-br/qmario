@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include "cpu.h"
+#include "bus.h"
 
 int main(void)
 {

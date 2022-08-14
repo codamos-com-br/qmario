@@ -6,16 +6,20 @@ SRCDIR=src
 BUILDDIR=build
 OUT=qmario
 
-OBJS=$(BUILDDIR)/cpu.o
+OBJS=$(BUILDDIR)/cpu.o \
+	 $(BUILDDIR)/bus.o
 MAINOBJ=$(BUILDDIR)/main.o
-TOBJS=$(BUILDDIR)/cpu.test.o
+TOBJS=$(BUILDDIR)/bus.test.o \
+	  $(BUILDDIR)/cpu.test.o
 
 run: $(BUILDDIR)/$(OUT)
 	$(BUILDDIR)/$(OUT)
 
 test: $(BUILDDIR) $(OBJS) $(TOBJS)
-	$(CC) $(OBJS) $(TOBJS) -o $(BUILDDIR)/tests $(LFLAGS)
-	$(BUILDDIR)/tests
+	for i in $(TOBJS); do \
+		$(CC) $(OBJS) $$i -o $(BUILDDIR)/tests $(LFLAGS); \
+		$(BUILDDIR)/tests; \
+	done
 
 # Constrói o executável principal
 $(BUILDDIR)/$(OUT): $(BUILDDIR) $(OBJS) $(MAINOBJ)
