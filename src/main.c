@@ -4,7 +4,6 @@
 int main(void)
 {
     cpu_reset();
-
     return 0;
 }
 
