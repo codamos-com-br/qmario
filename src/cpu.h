@@ -4,6 +4,8 @@
 #include "bus.h"
 #include <stdint.h>
 
+// @see https://www.pagetable.com/c64ref/6502/ for reference
+
 typedef struct {
     uint8_t a;
     uint8_t x;
