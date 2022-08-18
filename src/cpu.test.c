@@ -20,6 +20,19 @@ void test_cpu_reset(void)
 
 void test_cpu_tick_lda(void)
 {
+    Cpu cpu = { 0 };
+    Bus bus = { 0 };
+    int cycles = 0;
+
+    bus_write(&bus, 0x0600, 0xA9);
+    bus_write(&bus, 0x0601, 0xAA);
+
+    cpu_reset(&cpu, &bus);
+    cycles += cpu_tick(&cpu, &bus);
+
+    assert(cpu.pc == 0x0602);
+    assert(cpu.a == 0xAA);
+    assert(cycles == 2);
 }
 
 int main(void)
